@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+        h1{
+            color: rgb(36, 93, 139);
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        #container{
+            width: 30%;
+            border: 1px solid white;
+            margin: auto;
+            /* display: block; */
+            height: auto;
+            margin-top: 50px;
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+            border-radius: 10px;
+            
+        }
+        #login{
+            /* border: 1px solid blue; */
+            width: 80%;
+            margin: auto;
+            padding-bottom: 30px;
+        }
+
+        #login>label{
+            display: block;
+            margin-top: 25px;
+            margin-bottom: 5px;
+            margin-left: 40px;
+        }
+
+        #login input{
+            display: block;
+            margin-left: 40px;
+            width: 72%;
+            height: 35px;
+            border-radius: 5px;
+            border: none;
+            /* border: .5px solid gray; */
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        }
+
+        #submit{
+            margin-top: 30px;
+            width: 75%;
+            background-color: navy;
+            color: azure;
+            border-radius: 5px;
+            border: none;
+
+        }
+    </style>
+</head>
+<body>
+    <h1>WELCOME TO REEBOK !</h1>
+    <div id="container">
+        <h2 style="text-align: center; margin-top: 20px; margin-bottom: 25px;">Login</h2>
+        <form action="login" id="login">
+            <label for="">E-mail</label>
+            <input type="email" id="usermail" placeholder="  Enter E-mail">
+            <label for="">Password</label>
+            <input type="text" id="pass" placeholder="  Enter Password">
+            <input type="Submit" value="Submit" id="submit">
+        </form>
+    </div>
+</body>
+</html>
+<script>
+       var form=document.querySelector("form");
+
+       var signupData=JSON.parse(localStorage.getItem("userData"));
+
+
+       form.addEventListener("submit",function(event){
+           event.preventDefault();
+
+           var loginData={
+               email:login.usermail.value,
+               password:login.pass.value,
+           };
+
+           if(signupData===null)
+           {
+               alert("Please ! Create account first.")
+           }
+
+           else if(signupData.email===loginData.email&&signupData.password===loginData.password)
+           {
+               alert("Login Successful !")
+               window.location.href="index.html";
+
+
+               localStorage.setItem("loggedData",JSON.stringify(signupData));
+           }
+
+           else if(signupData.email===loginData.email)
+           {
+               if(signupData.password!==loginData.password)
+               {
+                alert("Please enter correct Password");
+               }
+               
+           }
+
+           else
+           {
+              alert("Please ! Create account first.");
+              window.location.href="signup.html";
+           }
+       })
+</script>
